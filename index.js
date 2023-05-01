@@ -7,6 +7,8 @@ const app = express();
 // Parse incoming request bodies in a middleware before handlers
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+const cors = require('cors');
+app.use(cors());
 
 // Create MySQL connection
 const connection = mysql.createConnection({
@@ -29,7 +31,7 @@ connection.connect((err) => {
 app.post("/api/data", (req, res) => {
   const {
     name,
-    dob,
+    age,
     sex,
     mobile,
     govt_id_type,
@@ -37,7 +39,7 @@ app.post("/api/data", (req, res) => {
     guardian_type,
     guardian_name,
     email,
-    emergency_contact_no,
+    emergency_contact,
     address,
     state,
     city,
@@ -51,7 +53,7 @@ app.post("/api/data", (req, res) => {
 
   const data = {
     name,
-    dob,
+    age,
     sex,
     mobile,
     govt_id_type,
@@ -59,7 +61,7 @@ app.post("/api/data", (req, res) => {
     guardian_type,
     guardian_name,
     email,
-    emergency_contact_no,
+    emergency_contact,
     address,
     state,
     city,
